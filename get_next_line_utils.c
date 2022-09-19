@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/05 14:11:30 by aigarcia          #+#    #+#             */
-/*   Updated: 2022/09/05 14:11:32 by aigarcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
 size_t	ft_strlen(char *str)
@@ -60,7 +48,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 		return (0);
 	it = -1;
 	jt = 0;
-	if (left_str)
+	if (left_str[0] != '\0')
 		while (left_str[it++] != '\0')
 			str[it] = left_str[it];
 	while (buff[jt] != '\0')

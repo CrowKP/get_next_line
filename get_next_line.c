@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/31 10:05:09 by aigarcia          #+#    #+#             */
-/*   Updated: 2022/08/31 10:05:10 by aigarcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 #include <unistd.h>
 
@@ -25,7 +13,7 @@ char	*ft_read_left_str(int fd, char *left_str)
 	while (!ft_strchr(left_str, '\n') && rd_data != 0)
 	{
 		rd_data = read(fd, buff, BUFFER_SIZE);
-		if (rd_data == -1)
+		if (rd_data <= 0)
 		{
 			free(buff);
 			return (0);
