@@ -46,7 +46,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
 	if (!str)
 		return (0);
-	it = -1;
+	it = 0;
 	jt = 0;
 	if (left_str[0] != '\0')
 		while (left_str[it++] != '\0')
