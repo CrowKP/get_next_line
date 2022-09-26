@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/26 15:58:23 by aigarcia          #+#    #+#             */
+/*   Updated: 2022/09/26 15:58:24 by aigarcia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "get_next_line.h"
 #include <unistd.h>
+#include <stdio.h>
 
 int	ft_checkrddata(int data, char *left_str)
 {
