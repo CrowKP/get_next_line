@@ -6,12 +6,28 @@
 /*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:58:23 by aigarcia          #+#    #+#             */
-/*   Updated: 2022/09/26 15:58:24 by aigarcia         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
 #include <unistd.h>
 #include <stdio.h>
+
+char	*ft_strchr(char *s, int c)
+{
+	int	it;
+
+	it = 0;
+	if (!s)
+		return (0);
+	while (s[it] != '\0')
+	{
+		if (s[it] == (char) c)
+			return ((char *)&s[it]);
+		it++;
+	}
+	return (0);
+}
 
 int	ft_checkrddata(int data, char *left_str)
 {
@@ -58,6 +74,10 @@ char	*get_next_line(int fd)
 	if (!left_str)
 		return (0);
 	line = ft_get_line(left_str);
+	if (!line)
+	{
+		return (0);
+	}
 	left_str = ft_new_left_str(left_str);
 	return (line);
 }

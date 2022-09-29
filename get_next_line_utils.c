@@ -6,7 +6,7 @@
 /*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 15:58:30 by aigarcia          #+#    #+#             */
-/*   Updated: 2022/09/26 15:58:31 by aigarcia         ###   ########.fr       */
+
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -23,38 +23,11 @@ size_t	ft_strlen(char *str)
 	return (it);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_joinit(char *str, char *left_str, char *buff)
 {
 	int	it;
+	int	jt;
 
-	it = 0;
-	if (!s)
-		return (0);
-	while (s[it] != '\0')
-	{
-		if (s[it] == (char) c)
-			return ((char *)&s[it]);
-		it++;
-	}
-	return (0);
-}
-
-char	*ft_strjoin(char *left_str, char *buff)
-{
-	size_t	it;
-	size_t	jt;
-	char	*str;
-
-	if (!left_str)
-	{
-		left_str = (char *)malloc(1 * sizeof(char));
-		left_str[0] = '\0';
-	}
-	if (!left_str || !buff)
-		return (0);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
-	if (!str)
-		return (0);
 	it = 0;
 	jt = 0;
 	if (left_str[0] != '\0')
@@ -64,6 +37,32 @@ char	*ft_strjoin(char *left_str, char *buff)
 	while (buff[jt] != '\0')
 		str[it++] = buff[jt++];
 	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	return (str);
+}
+
+char	*ft_strjoin(char *left_str, char *buff)
+{
+	char	*str;
+
+	if (!left_str)
+	{
+		left_str = (char *)malloc(1 * sizeof(char));
+		if (!left_str)
+			return (0);
+		left_str[0] = '\0';
+	}
+	if (!buff)
+	{
+		free(left_str);
+		return (0);
+	}
+	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	if (!str)
+	{
+		free(left_str);
+		return (0);
+	}
+	str = ft_joinit(str, left_str, buff);
 	free(left_str);
 	return (str);
 }
@@ -74,13 +73,16 @@ char	*ft_get_line(char *left_str)
 	char	*str;
 
 	it = 0;
-	if (!left_str[it])
+	if (!left_str)
 		return (0);
 	while (left_str[it] && left_str[it] != '\n')
 		it++;
-	str = (char *)malloc(sizeof(char) * (it + 2));
+	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) + 1));
 	if (!str)
+	{
+		free(left_str);
 		return (0);
+	}
 	it = 0;
 	while (left_str[it] && left_str[it] != '\n')
 	{
