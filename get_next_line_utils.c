@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 12:31:02 by aigarcia          #+#    #+#             */
-/*   Updated: 2022/10/02 12:31:03 by aigarcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 #include "get_next_line.h"
 
 int	contains_newline(const char *s)
@@ -16,6 +5,8 @@ int	contains_newline(const char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i])
 	{
 		if (s[i] == '\n')
@@ -30,6 +21,7 @@ char	*join_strs(const char *s1, const char *s2)
 	char	*s;
 	int		len;
 	int		i;
+	int		j;
 
 	len = 0;
 	if (!s1 && !s2)
@@ -42,12 +34,14 @@ char	*join_strs(const char *s1, const char *s2)
 	s = ft_malloc_zero(len + i + 1, sizeof * s);
 	if (!s)
 		return (NULL);
-	len = -1;
-	while (s1 && s1[++len])
-		s[len] = s1[len];
-	i = -1;
-	while (s2 && s2[++i])
-		s[len + i] = s2[i];
+	len = 0;
+	j = 0;
+	while (s1 && s1[j])
+		s[len++] = s1[j++];
+	i = 0;
+	j = 0;
+	while (s2 && s2[j] && s)
+		s[len + i++] = s2[j++];
 	return (s);
 }
 
@@ -63,7 +57,7 @@ char	*ft_strdup(const char *s1)
 		i++;
 	s2 = ft_malloc_zero(i + 1, sizeof * s2);
 	if (!s2)
-		return (NULL);
+		return (0);
 	i = 0;
 	while (s1[i])
 	{

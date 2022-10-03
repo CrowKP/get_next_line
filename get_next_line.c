@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: aigarcia <aigarcia@student.42barc...>      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 12:30:54 by aigarcia          #+#    #+#             */
-/*   Updated: 2022/10/02 12:30:55 by aigarcia         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 #include "get_next_line.h"
 
 char	*get_before_newline(const char *s)
@@ -16,6 +5,8 @@ char	*get_before_newline(const char *s)
 	char	*res;
 	int		i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i] != '\0' && s[i] != '\n')
 		i++;
@@ -44,6 +35,8 @@ char	*get_after_newline(const char *s)
 	int		i;
 	int		j;
 
+	if (!s)
+		return (0);
 	j = 0;
 	while (s && s[j])
 		j++;
