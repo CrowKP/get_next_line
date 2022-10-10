@@ -17,12 +17,12 @@
 # endif
 
 char	*get_next_line(int fd);
-void	ft_read_line(int fd, char **keep, char **tmp);
+void	ft_read_line(int fd, int r, char **keep, char **tmp);
 char	*ft_parse_line(char **keep, char **tmp);
 char	*get_before_newline(const char *s);
 char	*get_after_newline(const char *s);
 int		contains_newline(const char *s);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(char *s1);
 char	*join_strs(const char *s1, const char *s2);
 void	*ft_malloc_zero(size_t count, size_t size);
 void	ft_free_strs(char **str, char **str2, char **str3);

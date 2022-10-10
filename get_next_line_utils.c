@@ -45,7 +45,7 @@ char	*join_strs(const char *s1, const char *s2)
 	return (s);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	char	*s2;
 	int		i;

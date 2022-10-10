@@ -57,15 +57,16 @@ char	*get_after_newline(const char *s)
 	return (res);
 }
 
-void	ft_read_line(int fd, char **keep, char **tmp)
+void	ft_read_line(int fd, int r, char **keep, char **tmp)
 {
 	char	*buf;
-	int		r;
 
 	buf = malloc(sizeof * buf * (BUFFER_SIZE + 1));
 	if (!buf)
+	{
+		ft_free_strs(keep, tmp, 0);
 		return ;
-	r = 1;
+	}
 	while (r > 0)
 	{
 		r = read(fd, buf, BUFFER_SIZE);
@@ -102,12 +103,14 @@ char	*get_next_line(int fd)
 	static char	*keep = NULL;
 	char		*tmp;
 	char		*line;
+	int			r;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	line = NULL;
 	tmp = NULL;
-	ft_read_line(fd, &keep, &tmp);
+	r = 1;
+	ft_read_line(fd, r, &keep, &tmp);
 	if (keep != NULL && *keep != '\0')
 		line = ft_parse_line(&keep, &tmp);
 	if (!line || *line == '\0')
